@@ -4,3 +4,6 @@
 **/.terraform.lock.hcl
 
 terraform.tfstate.backup
+terraform.tfstate
+
+anoopk-01_credentials.txt

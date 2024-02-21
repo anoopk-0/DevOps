@@ -126,13 +126,34 @@ cat: to open the file in read mode
 
 awk : filter out he out of grep cmd
 
-\*\*to execute a script -
+### To execute a script -
+
 -- ./ <file_name> : it can be used to execute any script like sh or python
 -- sh <file_name> : to execute sh script
 
-\*\*permission
+### permission
+
 -- chmod 777(grant access to every one) <file_name>
 
 [777] (7 for myself/owner, 7 for my group, 7 for everyone)
 
 In Linux 7 is 4,2, 1 : read, write executes.
+
+-- chmod 600
+The command chmod 600 is a Unix/Linux command used to change the permissions of a file. In this case, chmod stands for "change mode," and 600 is a numeric representation of the permissions being set.
+
+Here's what each part means:
+
+chmod: The command used to change file permissions.
+
+600: This is the permission setting. In Unix/Linux systems, permissions are represented by three digits, each representing the permissions for different groups of users: owner, group, and others. In this case, 600 specifically refers to the owner's permissions.
+
+Breaking down 600:
+
+The first digit (6) represents the permissions for the owner.
+The second and third digits (00) represent the permissions for the group and others, respectively.
+The numbers in the permissions represent the following:
+
+6 represents read and write permissions.
+0 represents no permissions.
+So, chmod 600 sets the file permissions to read and write (but not execute) for the owner, and no permissions for the group and others.
