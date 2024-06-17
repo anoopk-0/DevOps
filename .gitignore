@@ -6,4 +6,4 @@
 terraform.tfstate.backup
 terraform.tfstate
 
-anoopk-01_credentials.txt
+aws-login.txt
