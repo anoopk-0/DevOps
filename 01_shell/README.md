@@ -65,9 +65,12 @@ Searching:
 grep: Search for a pattern in files.
 `grep pattern filename`
 
-find: Search for files and directories.
+find: Search for files and directories. (this is also important)
 `find /path/to/search -name filename`
 
+Ex: find -type f/d -name "f*"
+      : f : files
+      : d : directory
 ---
 
 System Information:
@@ -118,7 +121,7 @@ gzip or gunzip: Compress or decompress files.
 
 1. extension should be .sh or .py(for python scripts)
 2. vim or vi for open file for edit
-3. first line should be #!/bin/[...bash/sh] : this is called shebang bash/sh/dash/ksh/... are some of the executable of linux machine, so before executing a sh file, we need to tell the linux machine where which executable we are using. [they have some syntax differences]
+3. first line should be #!/bin/[...bash/sh] : this is called shebang /sh/dash/ksh/... are some of the executable of linux machine, so before executing a sh file, we need to tell the linux machine where which executable we are using. [they have some syntax differences]
    \*bash is important
 
 earlier !#/bin/sh -----------link to --> !/bin/bash, but with some of the ubuntu system, !/bin/sh it is directed to !/bin/dash. so the file need to mention proper syntax.
@@ -239,3 +242,265 @@ date is default command, it send the output stdin, so pipe doesn't redirect outp
 
 2. wget vs curl
    wget download the file and do operation, curl don't download the file.
+
+
+## Type of package manager
+
+ - npm 
+ - apt (Advance package tool)
+ - pip
+ - yarn
+
+`apt update: in lunix, there is package database, not all the packages are available. so before installing any package in linux, we need to update the package repo, then install the required package.`
+
+!Note: Instead of working with vim to edit, we can use nano package for easily writing the sh.
+
+**-r**: called recursive or -r, it is used for look into/delete a directory
+**-i**: to make a search case-insensitive 
+`grep -i -r 'hello' /somefolder or -ir`
+
+
+
+---------------------------
+
+## chaining commands
+
+In  scripting,  allows you to control the flow of execution based on the success or failure of previous commands. Here's how `&&`, `||`, and `;` work:
+
+1. **`&&` (AND operator)**:
+   - Syntax: `command1 && command2`
+   - Meaning: `command2` executes only if `command1` succeeds (returns exit status 0).
+   - Example:
+     ```
+     mkdir mydir && cd mydir
+     ```
+     Here, `cd mydir` will only execute if `mkdir mydir` successfully creates the directory.
+
+2. **`||` (OR operator)**:
+   - Syntax: `command1 || command2`
+   - Meaning: `command2` executes only if `command1` fails (returns a non-zero exit status).
+   - Example:
+     ```
+     rm non_existent_file || echo "File not found"
+     ```
+     If `rm non_existent_file` fails (because the file doesn't exist), `echo "File not found"` will be executed.
+
+3. **`;` (Semicolon)**:
+   - Syntax: `command1 ; command2`
+   - Meaning: `command2` is executed regardless of whether `command1` succeeds or fails.
+   - Example:
+     ```
+     make ; echo "Build process completed"
+     ```
+     Here, `echo "Build process completed"` will be executed regardless of whether `make` succeeds or fails.
+
+### Usage Examples:
+- **Combining `&&` and `||`:**
+  ```
+  command1 && command2 || command3
+  ```
+  - `command2` executes if `command1` succeeds; otherwise, `command3` executes.
+
+- **Using semicolons for sequential execution:**
+  ```
+  command1 ; command2 ; command3
+  ```
+  - `command1`, `command2`, and `command3` are executed sequentially, regardless of the success or failure of each.
+
+### Notes:
+- **Exit status:** Every command in  returns an exit status upon completion (`0` for success, non-zero for failure).
+- **Grouping commands:** You can also use `{}` to group commands and apply operators to the group, like `(command1 && command2) || command3`.
+
+These operators (`&&`, `||`, `;`) provide flexibility in scripting to handle different scenarios based on the success or failure of commands executed in sequence.
+
+-------------------------------------
+
+NOTE: In Bash scripting, the backslash (\) character is primarily used for line continuation, allowing you to split a command across multiple lines for better readability. Here's how you can use it:
+```
+command1 arg1 \
+         arg2 \
+         arg3
+
+```
+
+
+-------------------------------------
+
+## Environment Varibles
+
+`printenv` is a straightforward command-line utility that displays all currently defined environment variables and their values in a Unix-like shell environment.
+
+```
+# Set an environment variable
+export GREETING="Hello, User!"
+
+# Use it in a script
+echo $GREETING
+
+```
+
+----------------------------
+
+In the context of shell scripting and command-line usage, `>` and `>>` are both used for directing output, but they have different functionalities:
+
+1. **`>` (Redirect Output)**:
+   - The `>` operator is used to redirect the output of a command to a file.
+   - If the file already exists, `>` will overwrite the file with the new output.
+   - Example:
+     ```bash
+     echo "Hello, World!" > output.txt
+     ```
+     This command will write "Hello, World!" to `output.txt`, overwriting its previous contents if it existed.
+
+2. **`>>` (Append Output)**:
+   - The `>>` operator is used to redirect the output of a command and append it to the end of a file.
+   - If the file exists, `>>` will append the output to the existing content of the file.
+   - Example:
+     ```bash
+     echo "More text" >> output.txt
+     ```
+     This command will append "More text" to the end of `output.txt`, without erasing its previous content.
+
+**Key Differences**:
+- `>` overwrites the file with new output.
+- `>>` appends the output to the end of the file without erasing existing content.
+- Both operators are used for output redirection but serve different purposes based on whether you want to replace the file contents (`>`) or add to them (`>>`).
+
+In summary, `>` is for writing to a file and replacing its content, while `>>` is for appending to a file without erasing its current content.
+
+Note: to reaload the .bashrc file, need to do `source .bashrc`, if we added new varible, and without stopping the termial we want to use the variable.
+
+----------------------
+
+In Unix-like operating systems such as Linux, `useradd` and `adduser` are commands used to create new user accounts. Here’s a brief explanation of each:
+
+1. **useradd**:
+   - `useradd` is a low-level command that is used to create a new user account directly from the command line.
+   - It adds the user to the system by creating the necessary entries in system files like `/etc/passwd`, `/etc/shadow`, `/etc/group`, and `/etc/gshadow`.
+   - Example:
+     ```bash
+     sudo useradd username
+     ```
+     Replace `username` with the actual username you want to create.
+
+   - **Options**:
+     - `-m`: Create the user's home directory if it doesn't exist.
+     - `-s shell`: Set the user's login shell (e.g., `-s /bin/bash`).
+     - `-g group`: Set the primary group for the user.
+
+   - After creating the user with `useradd`, you typically use `passwd` command to set a password for the new user.
+
+2. **adduser**:
+   - `adduser` is a higher-level utility that provides a more user-friendly interface for creating new user accounts.
+   - It prompts you for information such as the user's full name, password, and other details.
+   - `adduser` internally calls `useradd` to create the user account and manages additional configurations such as creating the home directory and setting up default environment files.
+
+   - Example:
+     ```bash
+     sudo adduser username
+     ```
+     Follow the prompts to set up the new user account.
+
+   - **Options**:
+     - `--home DIR`: Specify the home directory for the new user.
+     - `--shell SHELL`: Set the login shell for the new user.
+     - `--ingroup GROUP`: Add the user to a specific supplementary group.
+
+**Key Differences**:
+- `useradd` is more basic and requires additional steps for setting up user details and directory structures.
+- `adduser` is more interactive and handles more aspects of user account creation, making it easier for administrators to manage new user setups.
+
+In most cases, using `adduser` is recommended for creating new user accounts unless you need to automate the process or require fine-grained control over user account creation, in which case `useradd` might be more suitable.
+
+
+---------------------------
+
+
+In Unix-like operating systems such as Linux, the `groups` command is used to display the groups a user belongs to. Here's how it works and what it does:
+
+### Syntax:
+
+```
+   groups [username]
+```
+
+### Explanation:
+
+- **Without arguments**: When you simply type `groups` without specifying a username, it displays the groups that your current user belongs to.
+
+  Example:
+  ```bash
+  groups
+  ```
+  Output might look like:
+  ```
+  username adm cdrom sudo dip plugdev lpadmin sambashare
+  ```
+
+- **With a username**: You can also specify a username as an argument to `groups` to see which groups a specific user belongs to.
+
+  Example:
+  ```bash
+  groups johndoe
+  ```
+  Replace `johndoe` with the username of the user you want to check.
+
+### How It Works:
+
+- The `groups` command reads information from the system files (`/etc/group` and others) to determine which groups a user is associated with.
+- It lists both primary and supplementary groups that the user belongs to.
+
+### Additional Notes:
+
+- The groups listed typically include:
+  - The user's primary group (listed first).
+  - Any additional groups the user is a member of (supplementary groups).
+
+- To view detailed information about a particular group, you can use the `getent` command along with `group` as follows:
+
+
+```bash
+getent group groupname
+```
+
+Replace `groupname` with the name of the group you want to examine. This command will display detailed information about the group, including its members.
+
+For example:
+```bash
+getent group sudo
+```
+
+This will show details about the `sudo` group, including its members, which are typically users authorized to run commands with superuser privileges.
+
+In summary, the `groups` command is used to quickly view which groups a user belongs to, while `getent group` provides more detailed information about specific groups on the system.
+
+The `groupmod` command in Unix-like operating systems is used to modify existing groups. It allows administrators to change various attributes of a group, such as the group name or group ID (GID), without directly editing system files. Here’s how you can use `groupmod`:
+
+### Syntax:
+
+```bash
+sudo groupmod [options] GROUP
+```
+
+### Options:
+
+- **-g GID**: Specify a new GID (group ID) for the group. This option allows you to change the numeric ID associated with the group.
+  
+  Example:
+  ```bash
+  sudo groupmod -g 1001 mygroup
+  ```
+  This command changes the GID of the group `mygroup` to `1001`.
+
+- **-n NEW_GROUPNAME**: Specify a new name for the group. This option allows you to rename the group.
+
+  Example:
+  ```bash
+  sudo groupmod -n newgroupname oldgroupname
+  ```
+  This command renames the group `oldgroupname` to `newgroupname`.
+
+- **-o**: This option allows changing the GID to a non-unique value. It is useful when you want to assign a non-unique GID to multiple groups.
+
+- **-A, -M, -P**: These options are used to add, remove, or set the administrative login group (AG) for a user. 
+

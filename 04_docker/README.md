@@ -61,18 +61,18 @@ To provide a better picture of files and folders that containers base images hav
 
 ### Files and Folders that containers use from host operating system
 
-```
-    The host's file system: Docker containers can access the host file system using bind mounts, which allow the container to read and write files in the host file system.
 
-    Networking stack: The host's networking stack is used to provide network connectivity to the container. Docker containers can be connected to the host's network directly or through a virtual network.
+**The host's file system:** Docker containers can access the host file system using bind mounts, which allow the container to read and write files in the host file system.
 
-    System calls: The host's kernel handles system calls from the container, which is how the container accesses the host's resources, such as CPU, memory, and I/O.
+**Networking stack:** The host's networking stack is used to provide network connectivity to the container. Docker containers can be connected to the host's network directly or through a virtual network.
 
-    Namespaces: Docker containers use Linux namespaces to create isolated environments for the container's processes. Namespaces provide isolation for resources such as the file system, process ID, and network.
+**System calls:** The host's kernel handles system calls from the container, which is how the container accesses the host's resources, such as CPU, memory, and I/O.
 
-    Control groups (cgroups): Docker containers use cgroups to limit and control the amount of resources, such as CPU, memory, and I/O, that a container can access.
-    
-```
+**Namespaces**: Docker containers use Linux namespaces to create isolated environments for the container's processes. Namespaces provide isolation for resources such as the file system, process ID, and network.
+
+**Control groups (cgroups):** Docker containers use cgroups to limit and control the amount of resources, such as CPU, memory, and I/O, that a container can access.
+
+-----
 
 It's important to note that while a container uses resources from the host operating system, it is still isolated from the host and other containers, so changes to the container do not affect the host or other containers.
 
@@ -80,9 +80,7 @@ It's important to note that while a container uses resources from the host opera
 
 so, in a nutshell, container base images are typically smaller compared to VM images because they are designed to be minimalist and only contain the necessary components for running a specific application or service. VMs, on the other hand, emulate an entire operating system, including all its libraries, utilities, and system files, resulting in a much larger size. 
 
-I hope it is now very clear why containers are light weight in nature.
-
-
+----------------------------------
 
 ## Docker
 
@@ -124,7 +122,11 @@ The Docker daemon (dockerd) listens for Docker API requests and manages Docker o
 
 #### Docker client
 
-The Docker client (docker) is the primary way that many Docker users interact with Docker. When you use commands such as docker run, the client sends these commands to dockerd, which carries them out. The docker command uses the Docker API. The Docker client can communicate with more than one daemon.
+The Docker client (docker) is the primary way that many Docker users interact with Docker. When you use commands such as docker run, the client sends these commands to dockerd, which carries them out. The docker command uses the Docker API. `The Docker client can communicate with more than one daemon.`
+
+```
+        the Docker client is designed to communicate with multiple Docker daemons. This capability is particularly useful in scenarios where you have Docker engines running on different machines or when you are managing Docker services across a network.
+```
 
 
 #### Docker Desktop
