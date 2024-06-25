@@ -2,7 +2,7 @@
 
 A Dockerfile is a text document that contains all the commands a user could call on the command line to assemble an image. It starts with a base image and then adds layers to configure and customize the environment where your application will run. Here's a basic structure of a Dockerfile and some key instructions you might use:
 
-```
+```bash
     # Use an official base image
     FROM ubuntu:20.04
 
@@ -84,12 +84,12 @@ Use `ADD` sparingly and only when needed: If you need to fetch files from URLs o
 
 ## Example Usage:
 
-```
+```bash
 # Using COPY
 COPY ./app /app
 ```
 
-```
+```bash
 # Using ADD (with caution)
 ADD https://example.com/file.tar.gz /temp/
 ```
@@ -169,18 +169,18 @@ In Docker, when defining commands in Dockerfiles for instructions like `CMD` and
 
 ## Shell Form:
 
-- **Syntax**: `CMD command param1 param2`
-- **Example**: `CMD python3 app.py`
+- Syntax: `CMD command param1 param2`
+- Example: `CMD python3 app.py`
 
 
 ## Exec Form:
-- **Syntax**: `CMD ["executable","param1","param2"]`
-- **Example**: `CMD ["python3", "app.py"]`
+- Syntax: `CMD ["executable","param1","param2"]`
+- Example: `CMD ["python3", "app.py"]`
 
 
 ### Key Differences:
 
-**Interpretation**: Shell form commands are interpreted by `/bin/sh -c` (or equivalent) in the container, allowing for shell features like variable expansion (`$VAR`) and redirection (`>`). Exec form commands are executed directly without interpretation by a shell, which avoids overhead and potential pitfalls of shell processing.
+Interpretation: Shell form commands are interpreted by `/bin/sh -c` (or equivalent) in the container, allowing for shell features like variable expansion (`$VAR`) and redirection (`>`). Exec form commands are executed directly without interpretation by a shell, which avoids overhead and potential pitfalls of shell processing.
   
 **Quoting**: Shell form commands are subject to interpretation by the shell, which means you need to carefully handle quoting and escaping to ensure the command executes as intended. Exec form commands, being JSON arrays, do not require quoting or escaping beyond standard JSON rules.
 

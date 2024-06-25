@@ -250,4 +250,10 @@ Certainly! Docker commands are used via the Docker CLI (Command Line Interface) 
   docker inspect my-redis
   ```
 
+- **Remove all container/images at once**
+    ```bash
+      docker container/images rm $(docker container/images  -q) 
+       
+       # -q: will list all the image/containers ID
+    ```
 These are some of the fundamental Docker commands used for managing containers, images, networks, volumes, and the Docker system itself. Each command has various options and flags that provide additional functionality and control over Docker resources.

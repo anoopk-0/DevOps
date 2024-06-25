@@ -26,13 +26,13 @@ containers to communicate with each other and with the host system.
 
 If you want to secure your containers and isolate them from the default bridge network you can also create your own bridge network.
 
-```
+```bash
 docker network create -d bridge my_bridge
 ```
 
 Now, if you list the docker networks, you will see a new network.
 
-```
+```bash
 docker network ls
 
 NETWORK ID          NAME                DRIVER
@@ -44,7 +44,7 @@ xxxxxxxxxxxx        host                host
 
 This new network can be attached to the containers, when you run these containers.
 
-```
+```bash
 docker run -d --net=my_bridge --name db training/postgres
 ```
 
@@ -73,7 +73,7 @@ To attach a host network to a Docker container, you can use the --network="host"
 
 Here's an example of how to run a Docker container with the host network:
 
-```
+```bash
 docker run --network="host" <image_name> <command>
 ```
 
