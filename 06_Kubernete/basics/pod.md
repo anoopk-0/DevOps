@@ -60,7 +60,7 @@ In this example:
 
 Pods are fundamental to Kubernetes operations, providing a flexible and scalable mechanism for deploying and managing containerized applications within a cluster.
 
-![alt text](../images/image-2.png)
+![alt text](../images/pod.png)
 
 
 \*IMP: Kubernetes employs Pods as the smallest deployable units, encapsulating one or more containers that share resources like networking and storage. Pods are essential for managing instances of applications, scaling them by creating new Pods rather than adding containers to existing ones. Pods typically have a 1-to-1 relationship with application containers, Kubernetes supports multiple containers within a single Pod for tasks like supporting processes or data processing alongside the main application.
