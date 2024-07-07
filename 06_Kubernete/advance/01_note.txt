@@ -1,0 +1,101 @@
+ Docker to containerd and the introduction of Kubernetes. 
+ 
+ Initially, Docker was dominant for container management, with Kubernetes designed specifically to orchestrate Docker containers. As Kubernetes gained popularity, support for other container runtimes like Rocket was desired, leading to the introduction of the Container Runtime Interface (CRI). CRI allowed Kubernetes to support various runtimes adhering to OCI standards, including containerd, which is now a separate CNCF project and a graduated member.
+
+
+1. Docker and Kubernetes: Initially tightly coupled, Kubernetes supported only Docker. With time, it accommodated other runtimes via CRI.
+   
+2. Container Runtime Interface (CRI): Defined a standard for container runtimes, enabling Kubernetes to work with different runtimes like containerd and Rocket.
+
+3. containerd: Evolved from Docker's internal components to become a standalone, CRI-compatible runtime, now installable independent of Docker. It's used directly with Kubernetes.
+
+4. Tools:
+   - ctr: Basic debugging tool for containerd, not recommended for production use.
+   - nerdctl: Docker-like CLI for containerd, suitable for general container management.
+   - crictl: From Kubernetes community, used to interact with CRI-compatible runtimes (including containerd) for debugging.
+
+5. Transition: Kubernetes deprecated dockershim in version 1.24, removing direct support for Docker, but maintaining compatibility with Docker-built images via containerd.
+
+6. Usage Recommendations: Use nerdctl for general container management with containerd, and crictl for debugging across different CRI runtimes.
+
+Overall, the presentation provides a historical context and practical insights into managing containers with Kubernetes, emphasizing the transition from Docker-centric to CRI-compatible runtimes like containerd.
+
+
+---------------------
+# History
+---------------------
+
+Certainly! Let's rewrite the transcript in more detail, focusing on each key point about Docker, containerd, Kubernetes, and the CLI tools (ctr, nerdctl, crictl).
+
+---
+
+Presenter: So, as you delve into the world of containerization, you'll encounter Docker and containerd frequently. Understanding their roles is essential, especially as Kubernetes evolves alongside these technologies. Today, we'll explore the differences between Docker and containerd, and shed light on CLI tools like ctr, nerdctl, and crictl, helping you navigate their functionalities.
+
+History and Evolution:
+
+In the early days, Docker revolutionized container technology with its user-friendly interface, making container management accessible and efficient. Kubernetes, initially designed to orchestrate Docker containers, quickly became synonymous with container orchestration.
+
+However, Kubernetes' reliance on Docker created limitations as other container runtimes, like Rocket, emerged. This led to the development of the Container Runtime Interface (CRI), enabling Kubernetes to support multiple container runtimes adhering to OCI (Open Container Initiative) standards.
+
+Docker and containerd Relationship:
+
+Docker, beyond being a container runtime, comprises multiple components—CLI tools, API, build tools, volumes, authentication, and the container runtime (RunC) managed by the daemon, containerd. Containerd itself evolved into a standalone project under CNCF, becoming CRI-compatible and usable with Kubernetes independently of Docker.
+
+Transition from Docker to containerd in Kubernetes:
+
+As Kubernetes matured, maintaining support for Docker through dockershim became cumbersome. Kubernetes 1.24 deprecated dockershim in favor of CRI-compatible runtimes. Despite this, Docker images, adhering to OCI standards, continued to function seamlessly with containerd.
+
+Understanding CLI Tools:
+
+1. ctr (Containerd CLI):
+   - Purpose: Debugging tool for containerd.
+   - Commands: ctr images pull <image>, ctr run <image>
+   - Usage: Limited to debugging, not ideal for production environments.
+
+2. nerdctl (Docker-like CLI for containerd):
+   - Purpose: Mimics Docker CLI with added features.
+   - Commands: nerdctl run <image>, supports Docker-like commands with enhancements like encrypted images and P2P distribution.
+   - Usage: Suitable for general container management in both development and production.
+
+3. crictl (Kubernetes CLI for CRI runtimes):
+   - Purpose: Kubernetes-centric tool for CRI-compatible runtimes.
+   - Commands: crictl images pull <image>, crictl run <image>, crictl pods, crictl logs <container-id>
+   - Usage: Primarily for debugging and Kubernetes container/pod management.
+
+Diagram:
+
+
+    +---------------------------------------------------+
+    |                      Kubernetes                   |
+    |                                                   |
+    | +----------------+       +---------------------+  |
+    | |   containerd   | <---  |       Docker        |  |
+    | +----------------+       +---------------------+  |
+    |         |                                          |
+    |         |                                          |
+    |         | ctr                                      |
+    |         | nerdctl                       +---------+ |
+    |         |                              |   CLI   | |
+    |         | crictl                       |  Tools  | |
+    |         v                              +---------+ |
+    |       +-------------------------------------------+
+    |       |
+    |       v
+    |    +---------------------------------------------+
+    |    |                 CRI                           |
+    |    |  +-------------+  +-------------+  +---------+|
+    |    |  | containerd  |  |   Rocket    |  |   Other ||
+    |    |  +-------------+  +-------------+  | runtimes||
+    |    +---------------------------------------------+
+    +---------------------------------------------------+
+
+
+Conclusion:
+
+In summary, Docker and containerd have evolved alongside Kubernetes, with containerd becoming the preferred CRI-compatible runtime. CLI tools like ctr, nerdctl, and crictl serve distinct purposes in managing containers within Kubernetes environments, catering to debugging, general management, and Kubernetes-specific tasks respectively.
+
+Understanding these tools equips you to navigate the complexities of container orchestration efficiently, ensuring you choose the right tool for each task. This knowledge is crucial as Kubernetes continues to advance in supporting diverse container runtimes and evolving containerization standards.
+
+---
+
+This detailed overview should provide a comprehensive understanding of Docker, containerd, Kubernetes, and their associated CLI tools, helping you grasp their roles and functionalities effectively.

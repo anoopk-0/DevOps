@@ -2,6 +2,8 @@
 
 In Kubernetes, a `Pod` is the smallest deployable unit that can be created and managed. It represents a single instance of a running process in the cluster, which may consist of one or more containers that share resources, such as storage and networking, and are scheduled together on the same node.
 
+-----------------
+
 ### Key Characteristics of Pods:
 
 1. `Pod Definition`:
@@ -10,7 +12,7 @@ In Kubernetes, a `Pod` is the smallest deployable unit that can be created and m
 2. `Primary Purpose`:
    - Pods are the basic building blocks of Kubernetes applications. They are typically used to run a single instance of a containerized application, but multiple containers within a Pod can work together to form a cohesive unit of service.
 
-3. `Shared Context`:
+3. `! Shared Context`:
    - Containers within the same Pod share the same network namespace, allowing them to communicate with each other over localhost. They can also share volumes, which are directories that exist within the Pod's filesystem.
 
 4. `Atomic Scheduling Unit`:
@@ -18,6 +20,8 @@ In Kubernetes, a `Pod` is the smallest deployable unit that can be created and m
 
 5. `Lifetime`:
    - Pods are considered ephemeral and are designed to be disposable. They can be created, deleted, and replaced by Kubernetes controllers based on scaling policies, application updates, or failures.
+
+---------------------
 
 ### Why Pods Are Used:
 
@@ -27,7 +31,7 @@ In Kubernetes, a `Pod` is the smallest deployable unit that can be created and m
 
 ### Example Pod Manifest (YAML):
 
-```yaml
+```
 apiVersion: v1
 kind: Pod
 metadata:
@@ -48,6 +52,8 @@ In this example:
 - The container listens on port 80 (`containerPort: 80`).
 - The Pod is labeled with `app: nginx`, which can be used for selecting Pods using Kubernetes labels and selectors.
 
+---------------------
+
 ### Managing Pods:
 
 - `Creating a Pod`: Use `kubectl apply -f pod.yaml` to create a Pod based on a manifest file.
@@ -63,4 +69,4 @@ Pods are fundamental to Kubernetes operations, providing a flexible and scalable
 ![alt text](../images/pod.png)
 
 
-\*IMP: Kubernetes employs Pods as the smallest deployable units, encapsulating one or more containers that share resources like networking and storage. Pods are essential for managing instances of applications, scaling them by creating new Pods rather than adding containers to existing ones. Pods typically have a 1-to-1 relationship with application containers, Kubernetes supports multiple containers within a single Pod for tasks like supporting processes or data processing alongside the main application.
+\*IMP: Kubernetes employs Pods as the smallest deployable units, encapsulating one or more containers that share resources like networking and storage. Pods are essential for managing instances of applications, scaling them by creating new Pods rather than adding containers to existing ones. `Pods typically have a 1-to-1 relationship with application containers, Kubernetes supports multiple containers within a single Pod for tasks like supporting processes or data processing alongside the main application.`

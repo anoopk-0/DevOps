@@ -138,26 +138,26 @@ spec:
 Explain:
 
 ```bash
-apiVersion: Specifies the Kubernetes API version (apps/v1) for the resource being created (ReplicaSet).
+    apiVersion: Specifies the Kubernetes API version (apps/v1) for the resource being created (ReplicaSet).
 
-kind: Defines the type of resource (ReplicaSet).
+    kind: Defines the type of resource (ReplicaSet).
 
-metadata: Contains identifying information about the ReplicaSet:
+    metadata: Contains identifying information about the ReplicaSet:
 
-name: The name of the ReplicaSet (myapp-rs in this example).
-labels: Key-value pairs that identify and categorize the ReplicaSet (app: myapp).
-spec: Specifies the desired state of the ReplicaSet:
+    name: The name of the ReplicaSet (myapp-rs in this example).
+    labels: Key-value pairs that identify and categorize the ReplicaSet (app: myapp).
+    spec: Specifies the desired state of the ReplicaSet:
 
-replicas: Specifies the number of pod replicas to maintain (3 in this example).
-selector: Defines how the ReplicaSet identifies which pods it manages. Pods with labels matching the selector (app: myapp) will be controlled by this ReplicaSet.
-matchLabels: Label selector to match pods (app: myapp).
-template: Defines the pod template used by the ReplicaSet to create new pods:
-metadata: Labels for pods created by this template (app: myapp).
-spec: Specifies the pod specification:
-containers: Array of containers within the pod.
-name: Name of the container (myapp-container).
-image: Docker image to use for the container (myapp:latest).
-ports: List of ports exposed by the container (containerPort: 80).
+    replicas: Specifies the number of pod replicas to maintain (3 in this example).
+    selector: Defines how the ReplicaSet identifies which pods it manages. Pods with labels matching the selector (app: myapp) will be controlled by this ReplicaSet.
+    matchLabels: Label selector to match pods (app: myapp).
+    template: Defines the pod template used by the ReplicaSet to create new pods:
+    metadata: Labels for pods created by this template (app: myapp).
+    spec: Specifies the pod specification:
+    containers: Array of containers within the pod.
+    name: Name of the container (myapp-container).
+    image: Docker image to use for the container (myapp:latest).
+    ports: List of ports exposed by the container (containerPort: 80).
 ```
 
 1. `Create ReplicaSet`:
