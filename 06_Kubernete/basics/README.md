@@ -5,7 +5,8 @@ Kubernetes is an open-source platform designed to automate the deployment, scali
 -----
 
 ## Container:
-- A container is a lightweight and portable runtime environment that encapsulates application code along with its dependencies, configurations, and runtime libraries. 
+
+A container is a lightweight and portable runtime environment that encapsulates application code along with its dependencies, configurations, and runtime libraries. 
 
   - **Runnable Instance**: A container is the instantiated form of an image that is running as a process on a host machine.
   
@@ -13,11 +14,11 @@ Kubernetes is an open-source platform designed to automate the deployment, scali
 
 ## Image:
 
-  An image is a read-only template used to create containers. It contains everything needed to run an application: code, runtime, libraries, environment variables, and configuration files. Think of it as a snapshot or blueprint of an application.
+An image is a read-only template used to create containers. It contains everything needed to run an application: code, runtime, libraries, environment variables, and configuration files. Think of it as a snapshot or blueprint of an application.
 
-   **Immutable**: Images are immutable, meaning once created, they cannot be changed. Changes result in new images being built.
+   - **Immutable**: Images are immutable, meaning once created, they cannot be changed. Changes result in new images being built.
   
-  **Layered Structure**: Images are often built in layers. Each layer represents a filesystem change (e.g., adding files, modifying files), and layers are stacked on top of each other to form the complete image.
+   - **Layered Structure**: Images are often built in layers. Each layer represents a filesystem change (e.g., adding files, modifying files), and layers are stacked on top of each other to form the complete image.
 
 
 ## Relationship:
@@ -29,7 +30,9 @@ Note: while an image is a static, immutable template that defines an application
 
 ## Container orchestration
 
-Container orchestration refers to the automated management, deployment, scaling, and operation of containerized applications. It addresses the complexities involved in running multiple containers across distributed environments. Here are key aspects of container orchestration:
+Container orchestration refers to the automated management, deployment, scaling, and operation of containerized applications. It addresses the complexities involved in running multiple containers across distributed environments. 
+
+Here are key aspects of container orchestration:
 
 1. `Deployment Automation`: Orchestration platforms automate the deployment process of containerized applications. They manage the lifecycle of containers, ensuring that they are deployed correctly, started, stopped, and updated as needed.
 
@@ -181,7 +184,6 @@ Kubernetes architecture is designed with a modular and extensible approach, enab
 `kubectl` is the command-line tool used to interact with Kubernetes clusters. It allows you to perform various operations on Kubernetes resources, manage clusters, and troubleshoot issues. Here are some of the most commonly used `kubectl` commands:
 
 Managing Resources:
-
 
    - `kubectl apply -f <filename>`: Applies a configuration file to create or update resources in the cluster. This is typically used with YAML files describing Kubernetes resources like pods, services, deployments, etc.
    

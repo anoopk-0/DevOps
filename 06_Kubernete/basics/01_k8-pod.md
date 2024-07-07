@@ -31,7 +31,7 @@ In Kubernetes, a `Pod` is the smallest deployable unit that can be created and m
 
 ### Example Pod Manifest (YAML):
 
-```
+```yaml
 apiVersion: v1
 kind: Pod
 metadata:
@@ -45,8 +45,6 @@ spec:
       ports:
         - containerPort: 80
 ```
-
-In this example:
 
 - The Pod named `nginx-pod` contains a single container (`nginx`) based on the `nginx:latest` Docker image.
 - The container listens on port 80 (`containerPort: 80`).
