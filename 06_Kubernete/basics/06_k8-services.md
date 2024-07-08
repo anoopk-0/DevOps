@@ -2,8 +2,6 @@
 
 Kubernetes services facilitate communication between various components within an application and with external entities. They enable connectivity between different groups of pods (components), such as front end, back end, and external data sources, promoting loose coupling in microservices architecture.
 
-
-
 Use Case and External Communication:
 
 - `Example Setup:`

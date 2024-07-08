@@ -1,58 +1,81 @@
-# Basic Network
+# Lecture on Networking in Kubernetes
 
-Certainly! Here are the notes based on the lecture about networking in Kubernetes:
+## Single Node Kubernetes Cluster
 
----
+**Node Configuration and IP Addressing**
 
-`Basics of Networking on a Single Node:`
-- Kubernetes operates on nodes, each having its own IP address.
-- For example, node IP: 192.168.1.2.
-- MiniKube setup: Consider VM's IP (e.g., 182.168.1.10).
+In a Kubernetes single-node setup, each node is assigned an IP address, such as `192.168.1.2`. This IP is used for administrative tasks like SSH access.
 
-`Pod Networking:`
-- Kubernetes assigns IPs to pods, not containers.
-- Each pod gets its unique internal IP (e.g., 10.244.0.2).
-- IP assignment managed within a private network (e.g., 10.244.0.0/16).
+**Pods and IP Assignment**
 
-`Challenges in Multi-Node Clusters:`
-- In a multi-node setup (nodes: 192.168.1.2, 192.168.1.3):
-  - Pods on different nodes sharing the same internal IP (e.g., 10.244.0.2).
-  - This leads to IP conflicts and communication issues.
+Unlike traditional Docker setups where containers get individual IPs, Kubernetes assigns IPs to pods. For example, a pod might have an IP like `10.244.0.2`. These IPs are allocated from a specific subnet (`10.244.0.0/16`) dedicated to pod networking.
 
-`Requirements for Kubernetes Networking:`
-- Kubernetes requires a networking solution where:
-  - Pods can communicate across nodes without NAT.
-  - Nodes can communicate with pods.
-  - All containers and pods can communicate seamlessly.
+**Internal Networking Setup**
 
-`Networking Solutions:`
-- Kubernetes does not automatically resolve networking conflicts.
-- Various solutions available:
-  - Calico, Flannel, Cisco ACI, VMware NSX-T, etc.
-- Choice depends on deployment environment (on-premises, cloud).
+Kubernetes establishes an internal private network (`10.244.0.0/16`) for pod IPs. Pods communicate internally using these IPs. However, relying on these IPs externally is discouraged due to potential changes during pod recreation.
 
-`Implementing Custom Networking (e.g., Flannel, Calico):`
-- Select a solution based on environment (e.g., Flannel for on-premises).
-- Solution manages IPs, creates virtual networks for pods and nodes.
-- Ensures unique IPs across the cluster, facilitates pod-to-pod communication.
+## Multi-Node Kubernetes Cluster
 
-`Conclusion:`
-- With custom networking (e.g., Flannel or Calico), Kubernetes ensures:
-  - Pods and nodes have distinct IPs.
-  - Seamless communication using assigned IP addresses.
+**Challenges with Multiple Nodes**
 
-`Next Steps:`
-- Understanding and implementing Kubernetes networking ensures efficient cluster operations.
-- Choose appropriate networking solution based on deployment specifics.
+When expanding to a multi-node setup (e.g., nodes `192.168.1.2` and `192.168.1.3`), each node hosts pods with IPs from the same internal network (`10.244.0.0/16`). This leads to IP conflicts and inefficiencies, highlighting the need for a robust networking solution.
 
+## Cluster Requirements
 
-![alt text](../images/IMG_6808.png) 
+**Fundamental Networking Requirements**
 
-![alt text](../images/IMG_6810.png) 
+- Pods must communicate without the need for Network Address Translation (NAT).
+- All nodes in the cluster must communicate with pods.
+- Pods should be able to communicate with nodes seamlessly.
 
-![alt text](../images/IMG_6811.png)
+**Choosing a Networking Solution**
 
+Kubernetes does not automate network setup between nodes and pods. Users are expected to select and configure a suitable networking solution based on their deployment environment:
+
+- **Calico**: Provides a secure networking layer with IP-per-pod and fine-grained policy enforcement.
+- **Flannel**: Offers a simple overlay network that facilitates communication between nodes and pods.
+- **Other Solutions**: Depending on the deployment environment (e.g., VMware NSX-T for VMware environments), other solutions like Cisco ACI, Weave Net, or Cilium may be suitable.
+
+## Implementation Example
+
+**Setting Up Calico**
+
+- **Virtual Network**: Calico creates a virtual network where each pod and node receives a unique IP address.
+- **Routing**: Utilizes straightforward routing techniques to enable communication between pods and nodes within the cluster.
+
+## Conclusion
+
+Understanding Kubernetes networking is essential for maintaining efficient communication within clusters. By implementing appropriate networking solutions like Calico or Flannel, Kubernetes clusters can effectively manage pod and node communication, ensuring seamless operation of distributed applications.
 
 ---
 
-These notes summarize the key points discussed in the lecture on networking within Kubernetes, covering single-node setups, challenges in multi-node clusters, requirements for Kubernetes networking, available solutions, and the implementation of custom networking solutions like Flannel or Calico.
+### Diagram:
+
+```
+   +-----------------------+
+   |                       |
+   |     Kubernetes        |
+   |     Master Node       |
+   |                       |
+   +-----------+-----------+
+               |
+               | Cluster Networking
+               |
+   +-----------+-----------+
+   |                       |
+   |      Worker Nodes      |
+   |   (192.168.1.2, .3, ...)|
+   |                       |
+   +-----------+-----------+
+               |
+               | Pod Networking
+               |
+   +-----------+-----------+
+   |           |           |
+   |   Pod     |   Pod     |
+   | (10.244.0.2) | (10.244.0.3) |
+   +-----------+-----------+
+```
+
+This diagram illustrates a multi-node Kubernetes cluster where worker nodes (`192.168.1.2`, `192.168.1.3`, etc.) host pods with IPs assigned from the internal network (`10.244.0.0/16`). Through a configured networking solution like Calico or Flannel, pods and nodes can communicate effectively within the cluster, adhering to Kubernetes' networking requirements.
+
