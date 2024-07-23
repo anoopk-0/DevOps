@@ -53,3 +53,15 @@ Here are the typical phases of the SDLC:
 7. `Maintenance`: Making updates, enhancements, and fixing issues that arise after deployment.
 
 Each phase in the SDLC is crucial for delivering a high-quality software product that meets user needs. Various methodologies, such as Waterfall, Agile, and DevOps, dictate how these phases are executed and iterated upon throughout the development process.
+
+
+-----
+
+
+![alt text](./Images/image.png)
+
+DevOps include
+    - builing
+    - testing
+    - deploying
+  * with automation
