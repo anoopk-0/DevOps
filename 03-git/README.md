@@ -40,14 +40,14 @@ Git is a distributed version control system (DVCS) that helps developers track c
 
  - In contrast, DVC, exemplified by systems like Git, operates on a distributed model where each developer maintains a complete copy of the repository, including its entire history, on their local machine. This decentralized approach enables developers to work offline, commit changes locally, and synchronize with remote repositories at their convenience. Branching and merging are fundamental features in DVC, facilitating parallel development and flexible workflows. Each local repository serves as a full backup, enhancing redundancy and data integrity. Git, in particular, has gained widespread adoption in software development due to its robust branching model, support for distributed workflows, and resilience in diverse collaboration scenarios.
 
-![dvc-cvs](./Images/dvc-cvs.png)
+![dvc-cvs](./images/dvc-cvs.png)
 
-----------
+
 
 ## git folder
 
 
-![git folder](./Images/git-folder.png)
+![git folder](./images/git-folder.png)
 
 
 In Git, the `.git` folder is a crucial component of every Git repository. It's a hidden directory located in the root directory of your Git repository, and it contains all the metadata and configuration information that Git needs to manage your project's version control. Here’s what you can find inside the `.git` folder:
@@ -74,7 +74,7 @@ Visibility and Management:
 
    - `Cloning and `.git``: When you clone a Git repository from a remote server using `git clone`, Git copies the entire `.git` directory along with your project files to your local machine. This allows you to work with the complete history and metadata of the repository locally.
   
-------------------
+
 
 ## Git commands 
 
@@ -119,7 +119,7 @@ Miscellaneous
    - `git stash`: Stash changes in a dirty working directory away.
    - `git submodule`: Initialize, update or inspect submodules.
 
---------------
+-
 
 ## IMP
 
@@ -233,8 +233,6 @@ Benefits of Git Hooks:
 - `Integration`: Hooks can integrate with external tools and services (e.g., CI/CD pipelines) to automate build and deployment processes.
 
 
-----------
-
 ## Branch naming conventions 
 
 General Principles:
@@ -258,7 +256,7 @@ General Principles:
 `hotfix/<version-number>-<short-description>`: Used for quickly fixing critical issues in a released version.
 
 
----------------
+
 
 ## branching strategy 
 A branching strategy defines how branches are organized and managed within a Git repository. It establishes rules and guidelines for creating, naming, merging, and deleting branches to facilitate collaboration, maintain code quality, and manage releases effectively. Here’s an overview of commonly used branching strategies:

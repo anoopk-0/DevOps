@@ -2,7 +2,7 @@
 
 A culture that allows the development and operations teams to work together results in continuous development, testing, integration, deployment, and monitoring of the software throughout the lifecycle.
 
-![devops-loop](./Images/devOps-loop.png)
+![devops-loop](./images/devOps-loop.png)
 
 The DevOps lifecycle consists of eight phases representing the processes, capabilities, and tools needed for development (on the left side of the loop) and operations (on the right side of the loop). Throughout each phase, teams collaborate and communicate to maintain alignment, velocity, and quality.
 
@@ -28,7 +28,6 @@ Here are some key reasons why organizations adopt DevOps:
 
 Overall, DevOps aims to align IT goals with business objectives, enhance customer satisfaction, and drive innovation through continuous improvement and iterative development practices.
 
-------
 
 ## SDLC
 
@@ -36,7 +35,7 @@ SDLC stands for Software Development Life Cycle. It is a process to produce soft
 
 Here are the typical phases of the SDLC:
 
-![sdlc](./Images/sdlc.png)
+![sdlc](./images/sdlc.png)
 
 1. `Planning`: Identifying project scope, requirements, goals, and feasibility analysis.
 
@@ -55,13 +54,14 @@ Here are the typical phases of the SDLC:
 Each phase in the SDLC is crucial for delivering a high-quality software product that meets user needs. Various methodologies, such as Waterfall, Agile, and DevOps, dictate how these phases are executed and iterated upon throughout the development process.
 
 
------
-
-
-![alt text](./Images/image.png)
+![alt text](./images/image.png)
 
 DevOps include
-    - builing
-    - testing
-    - deploying
-  * with automation
+ - builing
+ - testing
+ - deploying
+with automation
+  
+## DevOps Overall
+
+![devops](./images/devops.png)
