@@ -33,9 +33,6 @@ An operating system acts as a bridge between software and hardware, enabling sof
 5. `Applications`: These are the programs and software that users interact with directly, like web browsers, word processors, games, etc. Applications communicate with the OS to utilize hardware resources and perform tasks.
 
 
-------
-
-
 ## Kernel
 
 ![kernal](./images/kernel.png)
@@ -61,14 +58,6 @@ The kernel is the core(heart) component of an operating system. It is responsibl
                                 |    Kernel     |<--------->|   Hardware         |
                                 |_______________|           |____________________|
 ```
-
-Explanation of the Diagram:
-
-   - `Operating System`: This encompasses the entire software environment that manages the computer's resources and provides services to applications.
-     
-   - `Kernel`: The kernel is the core component of the operating system. It directly interacts with the hardware and manages essential operations such as process management, memory management, and device communication.
-
-   - `Hardware`: This represents the physical components of the computer system, including the CPU, memory, storage devices, input/output devices (keyboard, mouse, etc.), and other peripherals.
 
 Functionality:
 

@@ -95,7 +95,7 @@ A subnet (short for subnetwork) is a logical subdivision of an IP network. It al
                                         +----------------+----------------+----------------
 ```
 
-A subnet mask is a 32-bit number used to divide an IP address into network and host portions. It is represented in dotted decimal notation similar to an IP address, such as 255.255.255.0. 
+`NOTE`: A subnet mask is a 32-bit number used to divide an IP address into network and host portions. It is represented in dotted decimal notation similar to an IP address, such as 255.255.255.0. 
 
 When a network administrator wants to create subnets from a larger IP address range (say a Class C network, which traditionally has 256 IP addresses), they use the subnet mask to divide this range into smaller parts.
 
@@ -155,9 +155,12 @@ Public and private subnets serve distinct purposes within network architecture. 
 
 In networking, a "port" refers to a communication endpoint or a logical construct that identifies a specific process or service on a networked device. Here's a brief overview of what a port is and how it functions:
 
+These processes use ports to send or receive data over a network. For example, a web server runs on port 80 (HTTP) or 443 (HTTPS). Other examples include email servers (which might use ports 25, 465, or 587) and file transfer protocols.
+
 **Port:** In the context of networking, a port is a numeric identifier that distinguishes one endpoint of a communication from another on the same network device or across a network. It allows multiple processes to share the same IP address on the same device.
 
 Ports are numbered from 0 to 65535, with well-known ports reserved for specific protocols (e.g., port 80 for HTTP, port 443 for HTTPS).
+
 
 ```
                                 Computer or
@@ -191,11 +194,13 @@ Ports are numbered from 0 to 65535, with well-known ports reserved for specific 
 4. `Usage:`
    - Ports are integral to various internet protocols and services, including web browsing, email (SMTP, POP3, IMAP), file transfer (FTP), and remote access (SSH, RDP).
 
-## IMP
+## IMP Points
 
- - IP addresses identify devices, while ports identify specific services or applications running on those devices.
+ - IP addresses identify devices, while ports identify specific services/process or applications running on those devices.
   
  - IP addresses enable devices to find each other on a network, while ports enable multiple applications or services to operate independently on the same device.
+ 
+ - Only those processes that involve network communication will be associated with a port number. Most other processes on a computer or server won't use ports at all. 
 
 ```
                      Device (e.g., Computer)
@@ -207,3 +212,70 @@ Ports are numbered from 0 to 65535, with well-known ports reserved for specific 
                             | Port 443 (HTTPS)  |  Email Client
                             +-------------------+
 ```
+
+## DNS (Domain Name System)
+
+The Domain Name System (DNS) is a fundamental component of the internet infrastructure. It translates human-readable domain names (like `www.example.com`) into IP addresses (like `192.0.2.1`), which are used by computers to locate and communicate with each other over the internet.
+
+   - `Structure`: DNS is organized in a hierarchical structure. At the top of the hierarchy are the root servers, followed by top-level domains (TLDs) like `.com`, `.org`, and `.net`, and then second-level domains (e.g., `example.com`), and further subdomains (e.g., `www.example.com`).
+     
+Example: In `www.example.com`, `com` is the TLD, `example` is the second-level domain, and `www` is a subdomain.
+
+
+`DNS Resolution`
+---
+
+                                    User Request
+                                          |
+                                          v
+                                 +------------------+
+                                 |  DNS Resolver    |
+                                 +------------------+
+                                          |
+                                          v
+                                 +------------------+
+                                 |   Root DNS Server|
+                                 +------------------+
+                                          |
+                                          v
+                                 +------------------+
+                                 |  TLD DNS Server  |  (e.g., for .com)
+                                 +------------------+
+                                          |
+                                          v
+                                 +------------------+
+                                 | Authoritative    |
+                                 | DNS Server       |  (e.g., for example.com)
+                                 +------------------+
+                                          |
+                                          v
+                                    IP Address Returned
+                                          |
+                                          v
+                                 User's Browser Connects
+
+Explanation of Each Step
+
+1. `User Request`:
+   - The process starts when a user enters a domain name (e.g., `www.example.com`) into their web browser.
+
+2. `DNS Resolver`:
+   - The DNS Resolver, also known as a recursive resolver, is a server that receives the user's DNS query. Its job is to resolve the domain name into an IP address by querying other DNS servers as needed.
+   - If the resolver already has the answer cached from a previous request, it can immediately return the IP address to the user's browser. If not, it proceeds to resolve the query by querying other DNS servers.
+
+3. `Root DNS Server`:
+   - If the resolver does not have the IP address cached, it first queries a Root DNS Server. Root DNS Servers are at the top of the DNS hierarchy and can direct the resolver to the appropriate Top-Level Domain (TLD) DNS server based on the domain's extension (e.g., `.com`, `.org`, `.net`).
+
+4. `TLD DNS Server`:
+   - The Root DNS Server responds by directing the resolver to the relevant TLD DNS Server. The TLD server is responsible for knowing which authoritative DNS server handles the domain names under its specific TLD (e.g., `.com`).
+   - For instance, for `www.example.com`, the resolver is directed to the TLD DNS server that handles `.com` domains.
+
+5. `Authoritative DNS Server`:
+   - The TLD DNS Server then directs the resolver to the authoritative DNS server for the specific domain. The authoritative DNS server holds the actual DNS records for the domain (e.g., `example.com`).
+   - This server provides the resolver with the IP address associated with the requested domain name.
+
+6. `IP Address Returned`:
+   - The resolver receives the IP address from the authoritative DNS server and returns it to the user's browser.
+
+7. `User's Browser Connects`:
+   - With the IP address in hand, the browser can now connect directly to the web server at that IP address to retrieve and display the requested web page.
